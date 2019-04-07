@@ -16,7 +16,7 @@
   authorized_key:
     user: "ltdan"
     state: present
-    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/sec@natatrix.net.pub') }}"
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/<your_key>.pub') }}"
 
 - name: Add deploy user to sudoers
   lineinfile:
