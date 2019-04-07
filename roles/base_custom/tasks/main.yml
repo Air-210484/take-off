@@ -1,0 +1,72 @@
+# main common_sec Tasks
+
+# Set root passwd
+- name: Set root password
+  user:
+    name: root
+    password: "{{ root_passwd }}"
+
+# Begin user Creation step
+- name: Create userltdan
+  user:
+    name: "ltdan"
+    group: sudo
+
+- name: Set users authorized keys
+  authorized_key:
+    user: "ltdan"
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/sec@natatrix.net.pub') }}"
+
+- name: Add deploy user to sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "ltdan ALL"
+    line: "ltdan ALL=(ALL) NOPASSWD:ALL"
+    state: present
+
+# SSHD configuration
+- name: Change default ssh port
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^Port"
+    line: "Port 1984"
+    state: present
+  #notify: restart sshd
+
+- name: Disallow password authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  #notify: restart sshd
+
+- name: Disallow root SSH access
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+
+# restart SSH daemon!
+  notify: restart SSH daemon
+
+# firewall configuration
+- name: Enable FireWall on boot
+  ufw:
+    state: enabled
+    policy: reject
+
+- name: Deny traffic on SSH's default port (22)
+  ufw:
+    rule: deny
+    name: OpenSSH
+    delete: yes
+
+- name: Set rules for the new SSH default port
+  ufw:
+    rule: allow
+    proto: tcp
+    port: 1984
+    log: yes

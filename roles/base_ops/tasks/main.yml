@@ -1,0 +1,78 @@
+# Install needed packages
+- name: "Install base's required packages"
+  apt:
+    name: "{{ packages }}"
+    install_recommends: yes
+    update_cache: yes
+  vars:
+    packages:
+        - dirmngr
+        - python3-mysqldb
+        - python3-pymysql
+
+# Add mariaDB repo
+- name: Add an apt key MariaDB
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: C74CD1D8
+    state: present
+
+# Install MariaDB from official sources!
+- apt_repository:
+    repo: deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.3/debian stretch main
+    state: present
+
+# Install MariaDB-server package
+- name: MariaDB server installation
+  apt:
+    name: mariadb-server
+    install_recommends: yes
+    update_cache: yes
+
+# Set MySQL configuration file (before or after MySQL install)
+- name: Setting up configuration file
+  template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    mode: 0600
+
+# Create Mail server database
+- name: Create natatrix_net_mail Database
+  mysql_db:
+    name: "natatrix_net_mail"
+    state: present
+
+# Add asmsusr user to MariaDB
+- name: Add nmsusr user to MariaDB
+  mysql_user:
+    name: nmsusr
+    password: "{{ db_usr_passwd }}"
+    priv: 'natatrix_net_mail.*:ALL'
+    host: "localhost"
+    state: present
+
+# Create Mattermost server database
+- name: Create natatrix_net_mattermost Database
+  mysql_db:
+    name: "natatrix_net_mattermost"
+    state: present
+
+# Add new user to MariaDB
+- name: Add matrusr user to MariaDB
+  mysql_user:
+    name: matrusr
+    password: "{{ db_usr_passwd }}"
+    priv: 'natatrix_net_mattermost.*:ALL'
+    host: "localhost"
+    state: present
+
+# Enable MySQLDB on startup
+- name: Start Mysqld Service on startup
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+# restart MysqlDB service!
+  notify: restart mysql

@@ -1,0 +1,7 @@
+ # main common_custom Handlers
+
+ # SSHD Handler
+ - name: restart SSH daemon
+   service:
+     name: sshd
+     state: restarted
