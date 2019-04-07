@@ -1,0 +1,15 @@
+# Default Timezone
+timzeone: Europe/Paris
+
+# Default Packages
+required_packages:
+  - ufw
+  - curl
+  - socat
+  - sudo
+  - wipe
+  - htop
+  - git
+  - openssl
+  - vim
+  - zsh

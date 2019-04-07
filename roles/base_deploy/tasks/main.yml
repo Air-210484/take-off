@@ -1,9 +1,9 @@
 # main common_ops Tasks
 
 # Set timeZone
-- name: set timezone to Europe/Paris
+- name: "set timezone to {{ timezone }}"
   timezone:
-    name: Europe/Paris
+    name: "{{ timezone }}"
 
 # Ensure Distro's up to date!
 - name: "Update distro's cache"
@@ -21,19 +21,9 @@
 # configure needed packages
 - name: "Install base's required packages"
   apt:
-    name: "{{ packages }}"
+    name: "{{ required_packages }}"
     install_recommends: yes
     update_cache: yes
-  vars:
-    packages:
-        - ufw
-        - curl
-        - socat
-        - sudo
-        - wipe
-        - htop
-        - git
-        - openssl
 
 # Ensure Distro's up to date!
 - name: "Remove useless packages && dependencies from distro's cache"
