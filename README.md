@@ -12,10 +12,10 @@
 
 In order to customize your next system, just edit the following few parameters:
 
-* in "common_ops/tasks/main.yml" , set your timeZone
-* in "common_sec/tasks/main.yml" , set your userName && SSH public key directory
-* in "common_sec/tasks/main.yml" , set your custom SSH port
-* in "common_sec/tasks/main.yml" , adjust your own firewall rules
+* in "base_deploy/tasks/main.yml" , set your timeZone
+* in "base_custom/tasks/main.yml" , set your userName && SSH public key directory
+* in "base_custom/tasks/main.yml" , set your custom SSH port
+* in "base_custom/tasks/main.yml" , adjust your own firewall rules
 
 As basic recommendations, RTFM DUMMY!
 
@@ -35,7 +35,7 @@ ansible-playbook <playbook_name.yml>
 
 Take a look in "group_vars" folder, You'll see that I store my credentials in a Vault file...
 
-MAKE THE SAME! 
+MAKE THE SAME!
 
 ### Big THANKS to
 
