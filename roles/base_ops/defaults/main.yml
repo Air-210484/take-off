@@ -1,0 +1,5 @@
+# MariaDB required Packages
+required_packages: 
+  - dirmngr
+  - python3-mysqldb
+  - python3-pymysql
