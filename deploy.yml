@@ -6,19 +6,16 @@
 - name: "Base server's setup"
   hosts: base
   gather_facts: no
-  become: yes
-#  remote_user: root # our default user
-#  remote_user: ltdan # our deployed user
+#  become: yes
+  remote_user: root # our default user
+#  remote_user: <user> # our deployed user
 #  become_method: sudo
   vars:
     ansible_port: 22 # default port to connect to
+    timezone: "Europe/Paris"
 #    ansible_port: 1984 # default port to connect to
 
   roles:
-    - role: base_deploy
-      vars:
-        timezone: "Europe/Paris"
-#    - base_custom
-#    - base_ops
-#    - base_db
-#    - base_db_backup ==> incoming as gist
+    - base_deploy
+    - base_custom
+    - base_ops

@@ -1,0 +1,2 @@
+# Ignore retry attemps logs
+*.retry
