@@ -1,19 +1,23 @@
+---
 # Let's play OP!
 
 # Please take a look at README.md file before you begin using this boilerplate !
 
 - name: "Base server's setup"
   hosts: base
-  remote_user: root # our default user
+  gather_facts: no
+  become: yes
+#  remote_user: root # our default user
 #  remote_user: ltdan # our deployed user
-#  become: yes
 #  become_method: sudo
   vars:
     ansible_port: 22 # default port to connect to
 #    ansible_port: 1984 # default port to connect to
 
   roles:
-#    - base_deploy
+    - role: base_deploy
+      vars:
+        timezone: "Europe/Paris"
 #    - base_custom
 #    - base_ops
 #    - base_db

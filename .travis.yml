@@ -1,0 +1,5 @@
+language: python
+install:
+  - pip install ansible-lint
+script:
+  - ansible-lint . deploy.yml -v
