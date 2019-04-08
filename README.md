@@ -7,6 +7,7 @@
 - [x] secure SSH configuration
 - [ ] Setup server's online security (fail2ban and so on)
 - [X] Add MariaDB repository
+- [ ] Setup Apticron to receive server's health reports
 
 #### Set your variables in playbooks!
 
