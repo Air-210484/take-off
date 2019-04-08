@@ -22,7 +22,7 @@
   lineinfile:
     dest: /etc/sudoers
     regexp: "<user> ALL"
-    line: "ltdan ALL=(ALL) NOPASSWD:ALL"
+    line: "<user> ALL=(ALL) NOPASSWD:ALL"
     state: present
 
 # SSHD configuration

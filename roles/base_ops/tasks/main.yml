@@ -1,14 +1,9 @@
 # Install needed packages
-- name: "Install base's required packages"
+- name: "Install MariaDB required packages"
   apt:
-    name: "{{ packages }}"
+    name: "{{ required_packages }}"
     install_recommends: yes
     update_cache: yes
-  vars:
-    packages:
-        - dirmngr
-        - python3-mysqldb
-        - python3-pymysql
 
 # Add mariaDB repo
 - name: Add an apt key MariaDB
