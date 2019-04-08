@@ -7,21 +7,21 @@
     password: "{{ root_passwd }}"
 
 # Begin user Creation step
-- name: Create userltdan
+- name: Create user <user_name>
   user:
-    name: "ltdan"
+    name: "<user>"
     group: sudo
 
 - name: Set users authorized keys
   authorized_key:
-    user: "ltdan"
+    user: "<user>"
     state: present
     key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/<your_key>.pub') }}"
 
 - name: Add deploy user to sudoers
   lineinfile:
     dest: /etc/sudoers
-    regexp: "ltdan ALL"
+    regexp: "<user> ALL"
     line: "ltdan ALL=(ALL) NOPASSWD:ALL"
     state: present
 
@@ -32,7 +32,7 @@
     regexp: "^Port"
     line: "Port 1984"
     state: present
-  
+
 - name: Disallow password authentication
   lineinfile:
     dest: /etc/ssh/sshd_config
