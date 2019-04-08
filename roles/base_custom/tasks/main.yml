@@ -32,15 +32,13 @@
     regexp: "^Port"
     line: "Port 1984"
     state: present
-  #notify: restart sshd
-
+  
 - name: Disallow password authentication
   lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: "^PasswordAuthentication"
     line: "PasswordAuthentication no"
     state: present
-  #notify: restart sshd
 
 - name: Disallow root SSH access
   lineinfile:

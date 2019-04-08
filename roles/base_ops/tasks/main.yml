@@ -37,33 +37,18 @@
     owner: root
     mode: 0600
 
-# Create Mail server database
+# Create database
 - name: Create natatrix_net_mail Database
   mysql_db:
-    name: "natatrix_net_mail"
+    name: "<db_name>"
     state: present
 
-# Add asmsusr user to MariaDB
+# Add  user to MariaDB
 - name: Add nmsusr user to MariaDB
   mysql_user:
-    name: nmsusr
+    name: <db-usr>
     password: "{{ db_usr_passwd }}"
-    priv: 'natatrix_net_mail.*:ALL'
-    host: "localhost"
-    state: present
-
-# Create Mattermost server database
-- name: Create natatrix_net_mattermost Database
-  mysql_db:
-    name: "natatrix_net_mattermost"
-    state: present
-
-# Add new user to MariaDB
-- name: Add matrusr user to MariaDB
-  mysql_user:
-    name: matrusr
-    password: "{{ db_usr_passwd }}"
-    priv: 'natatrix_net_mattermost.*:ALL'
+    priv: '<db_name>.*:ALL'
     host: "localhost"
     state: present
 
