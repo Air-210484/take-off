@@ -10,9 +10,9 @@
 - [ ] Setup Exim4 with Debconf
 - [ ] Setup Apticron to receive server's health reports
 
-#### Set your variables in playbooks!
+#### Set your own variables in playbook!
 
-In order to customize your next system, just edit the following few parameters:
+In order to customize your next system, just set your own few parameters:
 
 * in "base_deploy/tasks/main.yml" , set your timeZone
 * in "base_custom/tasks/main.yml" , set your userName && SSH public key directory
