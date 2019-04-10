@@ -39,6 +39,18 @@ Take a look in "group_vars" folder, You'll see that I store my credentials in a 
 
 MAKE THE SAME!
 
+In order to create a Vault file, just run :
+
+```
+ansible-vault --ask-vault-pass create <folder>/<file_name>
+```
+
+In order to edit your Vault file, just run :
+
+```
+ansible-vault --ask-vault-pass edit <folder>/<file_name>
+```
+
 ### Big THANKS to
 
 * Ansible documentation!
