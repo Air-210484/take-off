@@ -61,4 +61,3 @@ ansible-vault --ask-vault-pass edit <folder>/<file_name>
 ### TODO :
 
 - [ ] fail2ban config
-- [ ] Make this playbook "friendly"
