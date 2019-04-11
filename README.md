@@ -9,6 +9,7 @@
 - [X] Add MariaDB repository
 - [ ] Setup Exim4 with Debconf
 - [ ] Setup Apticron to receive server's health reports
+- [ ] Use variables everywhere it is possible
 
 #### Set your own variables in playbook!
 
